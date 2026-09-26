@@ -19,13 +19,13 @@ const buttons = [
     {
         id: 1,
         title: "Sign in",
-        link: "/sign-in",
+        link: "/auth/sign-in",
         buttonVariant: "default" as const
     },
     {
         id: 2,
         title: "Sign up",
-        link: "/sign-up",
+        link: "/auth/sign-up",
         buttonVariant: "ghost" as const
     }
 ]
