@@ -4,6 +4,8 @@ import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
 import { ThemeProvider } from "@/components/web/theme-provider"
+import { ConvexClientProvider } from "@/components/web/ConvexClientProvider";
+import { Toaster } from "@/components/ui/toast";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -33,9 +35,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           enableSystem
           disableTransitionOnChange
         >
-          <TooltipProvider>
-            {children}
-          </TooltipProvider>
+          <ConvexClientProvider>
+            <TooltipProvider>
+              {children}
+              <Toaster />
+            </TooltipProvider>
+          </ConvexClientProvider>
         </ThemeProvider>
       </body>
     </html>

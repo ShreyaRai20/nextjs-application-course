@@ -3,9 +3,15 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Field, FieldGroup, FieldLabel, FieldError } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { toast } from "@/components/ui/toast";
+import { authClient } from "@/lib/auth-client";
 import { SignupSchema } from "@/schemas/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
+import z from "zod";
 
 export default function SignUp() {
     const form = useForm({
@@ -17,8 +23,34 @@ export default function SignUp() {
         }
     })
 
-    const hanldeSubmit = () => {
-        console.log("submitted")
+    const router = useRouter()
+    const [isPending, startTransition] = useTransition()
+
+    const hanldeSubmit = (data: z.infer<typeof SignupSchema>) => {
+        startTransition(async () => {
+            await authClient.signUp.email({
+                email: data.email,
+                name: data.name,
+                password: data.password,
+                fetchOptions: {
+                    onSuccess: () => {
+                        toast.add({
+                            type: 'success',
+                            description: 'Account created successfully',
+                            timeout: 2000,
+                        })
+                        router.push('/')
+                    },
+                    onError: (error) => {
+                        toast.add({
+                            type: 'error',
+                            description: `error occured while signing up ${error.error.message}`,
+                            timeout: 2000,
+                        })
+                    }
+                }
+            })
+        })
     }
     return (
         <Card>
@@ -62,7 +94,16 @@ export default function SignUp() {
                                 </Field>
                             )}
                         />
-                        <Button type="submit"> Sign up</Button>
+                        {isPending ?
+                            (
+                                <>
+                                    <Loader2 size={4} className="animate-spin" />
+                                    <span>Loading...</span>
+                                </>
+                            ) :
+                            (
+                                <Button type="submit"> Sign up</Button>
+                            )}
                     </FieldGroup>
                 </form>
             </CardContent>
