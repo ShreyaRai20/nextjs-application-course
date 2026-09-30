@@ -1,19 +1,19 @@
-'use client'
-
-import { getBlogsAction } from "@/app/actions";
+import BlogCard from "@/components/web/blog-card";
 import { api } from "@/convex/_generated/api";
-import { useQuery } from "convex/react";
-import { useEffect } from "react";
+import { fetchAuthQuery } from "@/lib/auth-server";
 
-export default function Blog() {
-    const posts = useQuery(api.posts.getPosts)
+export default async function Blog() {
+    await new Promise((resolve) => setTimeout(resolve, 5000))
+    const posts = await fetchAuthQuery(api.posts.getPosts)
 
     return (
         <div>
-            <div>Blog</div>
-            {posts?.map(({ _id, title, content, _creationTime }) => (
-                <div key={_id}>{title}</div>
-            ))}
+            <div>Blogs</div>
+            <div className="flex gap-5 flex-wrap">
+                {posts?.map(({ _id, title, content, _creationTime }) => (
+                    <BlogCard key={_id} title={title} content={content} _creationTime={_creationTime} />
+                ))}
+            </div>
         </div>
     )
 }
