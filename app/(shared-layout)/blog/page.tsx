@@ -3,7 +3,7 @@ import { api } from "@/convex/_generated/api";
 import { fetchAuthQuery } from "@/lib/auth-server";
 
 export default async function Blog() {
-    await new Promise((resolve) => setTimeout(resolve, 5000))
+
     const posts = await fetchAuthQuery(api.posts.getPosts)
 
     return (
