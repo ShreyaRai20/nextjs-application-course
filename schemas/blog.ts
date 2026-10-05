@@ -1,6 +1,7 @@
-import z from "zod"
+import z, { file } from "zod"
 
 export const PostSchema = z.object({
     title: z.string().min(6).max(30),
-    content: z.string().min(8)
+    content: z.string().min(8),
+    image: z.instanceof(File),
 })

@@ -19,7 +19,8 @@ export default function Create() {
         resolver: zodResolver(PostSchema),
         defaultValues: {
             title: '',
-            content: ''
+            content: '',
+            image: undefined
         }
     })
 
@@ -58,6 +59,20 @@ export default function Create() {
                                         <Field>
                                             <FieldLabel> Content </FieldLabel>
                                             <Textarea aria-invalid={fieldState.invalid} placeholder="Please write your content here" {...field} />
+                                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                                        </Field>
+                                    )}
+                                />
+                                <Controller
+                                    name="image"
+                                    control={form.control}
+                                    render={({ field, fieldState }) => (
+                                        <Field>
+                                            <FieldLabel> Image </FieldLabel>
+                                            <Input aria-invalid={fieldState.invalid} placeholder="Title" type="file" accept="image/*" onChange={(e) => {
+                                                const file = e.target.files?.[0]
+                                                field.onChange(file)
+                                            }} />
                                             {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                                         </Field>
                                     )}

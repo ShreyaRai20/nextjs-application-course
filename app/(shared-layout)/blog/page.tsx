@@ -20,8 +20,13 @@ async function BlogList() {
     const posts = await fetchAuthQuery(api.posts.getPosts)
     return (
         <div className="flex gap-5 flex-wrap">
-            {posts?.map(({ _id, title, content, _creationTime }) => (
-                <BlogCard key={_id} title={title} content={content} _creationTime={_creationTime} />
+            {posts?.map(({ _id, title, content, _creationTime, imageUrl }) => (
+                <BlogCard
+                    key={_id} title={title}
+                    content={content}
+                    _creationTime={_creationTime}
+                    imageUrl={imageUrl}
+                />
             ))}
         </div>
     )
