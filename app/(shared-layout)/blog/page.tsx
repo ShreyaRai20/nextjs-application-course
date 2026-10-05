@@ -16,7 +16,6 @@ export default function Blog() {
 }
 
 async function BlogList() {
-    await new Promise((resolve) => setTimeout(resolve, 5000))
     const posts = await fetchAuthQuery(api.posts.getPosts)
     return (
         <div className="flex gap-5 flex-wrap">
