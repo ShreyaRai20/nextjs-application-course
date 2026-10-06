@@ -25,13 +25,18 @@ export default function BlogCard({ title, content, _creationTime, imageUrl }: Bl
                 </CardDescription>
             </CardHeader>
             <CardContent>
-                <Image
-                    src={imageUrl ?? ''}
-                    alt=''
-                    width={200}
-                    height={200}
-                    className='h-46 rounded-lg object-cover'
-                />
+                {imageUrl ? (
+                    <Image
+                        src={imageUrl}
+                        alt=''
+                        width={200}
+                        height={200}
+                        className='h-46 w-full rounded-lg object-cover'
+                    />
+                ) : (
+                    <div className="bg-muted h-46 w-full rounded-lg" />
+                )
+                }
                 {content}
             </CardContent>
         </Card>
