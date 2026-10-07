@@ -1,5 +1,5 @@
 import { v } from "convex/values";
-import { mutation } from "./_generated/server";
+import { mutation, query } from "./_generated/server";
 import { authComponent } from "./auth";
 
 export const createBlog = mutation({
@@ -16,5 +16,17 @@ export const createBlog = mutation({
         })
 
         return newPost
+    }
+})
+
+
+export const getBlogs = query({
+    args: {},
+    handler: async (ctx) => {
+
+        const user = await authComponent.safeGetAuthUser(ctx)
+        if(!user) throw new Error("Not authorized")
+
+        return ctx.db.query("posts").collect()
     }
 })
