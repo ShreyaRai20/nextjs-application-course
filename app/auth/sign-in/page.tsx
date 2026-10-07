@@ -91,8 +91,8 @@ export default function SignUp() {
                                 )}
 
                             />
+                            {isPending ? (<Loader2 />) : (<Button type="submit"> Sign In </Button>)}
                         </FieldGroup>
-                        {isPending ? (<Loader2 />) : (<Button type="submit"> Sign In </Button>)}
                     </form>
                 </CardContent>
             </Card>

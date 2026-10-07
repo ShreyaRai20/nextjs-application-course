@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { blogSchema } from "@/schema/blog";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
 import { useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
 import z from "zod";
@@ -67,8 +68,8 @@ export default function CreateBlog() {
                                         </Field>
                                     )}
                                 />
+                                <Button type="submit"> {isePending ? (<Loader2 />) : "Create blog"}</Button>
                             </FieldGroup>
-                            <Button type="submit"> Create blog </Button>
                         </form>
                     </CardContent>
                 </Card>
