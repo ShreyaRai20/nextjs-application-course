@@ -18,10 +18,11 @@ export default function Blog() {
 
 export async function BlogList() {
     const posts = await fetchAuthQuery(api.posts.getBlogs)
+    console.log(posts?.[0].imageUrl)
     return (
         <div className="flex flex-wrap gap-1">
-            {posts.map(({ _id, title, content, _creationTime }) => (
-                <BlogCard key={_id} title={title} content={content} _creationTime={_creationTime} />
+            {posts.map(({ _id, title, content, _creationTime, imageUrl }) => (
+                <BlogCard key={_id} title={title} content={content} _creationTime={_creationTime} imageUrl={imageUrl} />
             ))}
         </div>
     )

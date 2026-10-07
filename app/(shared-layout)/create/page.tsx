@@ -68,7 +68,34 @@ export default function CreateBlog() {
                                         </Field>
                                     )}
                                 />
-                                <Button type="submit"> {isePending ? (<Loader2 />) : "Create blog"}</Button>
+                                <Controller
+                                    name="image"
+                                    control={form.control}
+                                    render={({ field, fieldState }) => (
+                                        <Field>
+                                            <FieldLabel>Image</FieldLabel>
+                                            <Input
+                                                type="file"
+                                                accept="image/*"
+                                                onChange={(e) => {
+                                                    const file = e.target.files?.[0]
+                                                    field.onChange(file)
+                                                }}
+                                            />
+                                        </Field>
+                                    )}
+                                />
+                                <Button type="submit">
+                                    {isePending ?
+                                        (
+                                            <>
+                                                <Loader2 />
+                                                <span>Loading...</span>
+                                            </>
+                                        ) :
+                                        "Create blog"
+                                    }
+                                </Button>
                             </FieldGroup>
                         </form>
                     </CardContent>
