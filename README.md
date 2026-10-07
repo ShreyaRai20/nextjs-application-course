@@ -55,5 +55,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
    - CONVEX SCHEMA- https://docs.convex.dev/database/schemas
    - MUTATION - https://docs.convex.dev/database/writing-data
 
-8. IMAGE
-   -
+8. IMAGE - https://docs.convex.dev/file-storage/overview
+   - UPLOAD - https://docs.convex.dev/file-storage/upload-files
+   - SERVE - https://docs.convex.dev/file-storage/serve-files
