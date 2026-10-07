@@ -46,7 +46,13 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 5. CREATE NAVBAR
 
-6. SIGN-IN AND SIGN-UP PAGE -
+6. SIGN-IN AND SIGN-UP PAGE - https://ui.shadcn.com/docs/forms/react-hook-form
    - ZOD - https://zod.dev/
    - REACT-HOOK-FORM - https://react-hook-form.com/get-started
    - ZOD RESOLVER - npm install @hookform/resolvers
+
+7. POST
+   - CONVEX SCHEMA- https://docs.convex.dev/database/schemas
+   - MUTATION - https://docs.convex.dev/database/writing-data
+
+8.
