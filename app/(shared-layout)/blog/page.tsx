@@ -18,7 +18,6 @@ export default function Blog() {
 
 export async function BlogList() {
     const posts = await fetchAuthQuery(api.posts.getBlogs)
-    console.log(posts)
     return (
         <div className="flex flex-wrap gap-1">
             {posts.map(({ _id, title, content, _creationTime }) => (

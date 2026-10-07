@@ -26,12 +26,11 @@ export default function CreateBlog() {
         startTransition(async () => {
             await createBlogAction(values)
         })
-        console.log("submitting")
     }
     return (
         <div className="min-h-full flex justify-center items-center">
             <div className="w-full max-w-md mx-auto">
-                <Card>
+                <Card className="mt-4 rounded-xl">
                     <CardHeader>
                         <CardTitle>Blog</CardTitle>
                         <CardDescription>Create your blog here</CardDescription>

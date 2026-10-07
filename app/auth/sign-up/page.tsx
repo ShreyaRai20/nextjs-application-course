@@ -7,7 +7,9 @@ import { toast } from "@/components/ui/toast";
 import { authClient } from "@/lib/auth-client";
 import { signUpSchema } from "@/schema/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
 import z from "zod";
 
@@ -21,34 +23,36 @@ export default function SignUp() {
         }
     })
     const router = useRouter()
+    const [isPending, startTransiiton] = useTransition()
 
     const handleSubmit = async (values: z.infer<typeof signUpSchema>) => {
-        console.log("submitting")
-        await authClient.signUp.email({
-            name: values.name,
-            email: values.email,
-            password: values.password,
-            fetchOptions: {
-                onSuccess: () => {
-                    toast.add({
-                        type: "success",
-                        description: "Account created successfully"
-                    })
-                },
-                onError: (error) => {
-                    toast.add({
-                        type: "error",
-                        description: `error while creating account ${error.error.message}`
-                    })
+        startTransiiton(async () => {
+            await authClient.signUp.email({
+                name: values.name,
+                email: values.email,
+                password: values.password,
+                fetchOptions: {
+                    onSuccess: () => {
+                        toast.add({
+                            type: "success",
+                            description: "Account created successfully"
+                        })
+                        router.push("/")
+                    },
+                    onError: (error) => {
+                        toast.add({
+                            type: "error",
+                            description: `error while creating account ${error.error.message}`
+                        })
+                    }
                 }
-            }
+            })
         })
-        router.push("/")
     }
 
     return (
         <>
-            <Card>
+            <Card className="rounded-xl">
                 <CardHeader>
                     <CardTitle>Sign up</CardTitle>
                     <CardDescription>Create your account here</CardDescription>
@@ -106,7 +110,7 @@ export default function SignUp() {
 
                             />
                         </FieldGroup>
-                        <Button type="submit"> Sign up </Button>
+                        {isPending ? (<Loader2 />) : (<Button type="submit"> Sign up </Button>)}
                     </form>
                 </CardContent>
             </Card>

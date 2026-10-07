@@ -15,7 +15,7 @@ type BlogCardProps = {
 
 export default function BlogCard({ title, content, _creationTime }: BlogCardProps) {
     return (
-        <Card size="sm" className="mx-auto w-full max-w-xs">
+        <Card size="sm" className="mx-auto w-full max-w-xs rounded-xl">
             <CardHeader>
                 <CardTitle> {title} </CardTitle>
                 <CardDescription>
