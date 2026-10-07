@@ -39,7 +39,14 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## STEPS -
 
-1. CREATE NEXTJS APPLICATION
+1. CREATE NEXTJS APPLICATION - https://nextjs.org
 2. INSTALL CONVEX AND BETTER AUTH - DOCUMENTATION - https://labs.convex.dev/better-auth/framework-guides/next
 3. INSTALL SHADCN - https://ui.shadcn.com/docs/installation
 4. INSTALL "next-themes" AND CREATE THEME TOGGLE AND THEME PROVIDER - https://ui.shadcn.com/docs/dark-mode/next
+
+5. CREATE NAVBAR
+
+6. SIGN-IN AND SIGN-UP PAGE -
+   - ZOD - https://zod.dev/
+   - REACT-HOOK-FORM - https://react-hook-form.com/get-started
+   - ZOD RESOLVER - npm install @hookform/resolvers
