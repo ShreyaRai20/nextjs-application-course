@@ -23,10 +23,6 @@ export const createBlog = mutation({
 export const getBlogs = query({
     args: {},
     handler: async (ctx) => {
-
-        const user = await authComponent.safeGetAuthUser(ctx)
-        if(!user) throw new Error("Not authorized")
-
         const posts = await ctx.db
             .query("posts")
             .order("desc")
@@ -44,6 +40,22 @@ export const getBlogs = query({
                 }
             })
         )
+    }
+})
+
+export const getBlogById = query({
+    args: {postId: v.id("posts")},
+    handler: async (ctx, {postId}) => {
+        const post = await ctx.db.get(postId)
+
+        const resolvedImage = post?.imageStorageId !== undefined
+                    ? { url: await ctx.storage.getUrl(post.imageStorageId) }
+                    : null
+
+        return {
+            ...post,
+            imageUrl: resolvedImage?.url || null
+        }
     }
 })
 

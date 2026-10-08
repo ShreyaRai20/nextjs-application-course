@@ -5,6 +5,7 @@ import z from "zod";
 import { api } from "@/convex/_generated/api";
 import { redirect } from "next/navigation";
 import { generateImageUploadUrl } from "@/convex/posts";
+import { revalidatePath } from "next/cache";
 
 export async function createBlogAction (values: z.infer<typeof blogSchema>) {
 
@@ -50,6 +51,7 @@ export async function createBlogAction (values: z.infer<typeof blogSchema>) {
     throw new Error("Error while creating blog");
 
 }
-
-    return redirect('/')
+    // ON DEMAND REVALIDATION
+    revalidatePath("/blog")
+    return redirect("/blog")
 }

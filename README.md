@@ -58,3 +58,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 8. IMAGE - https://docs.convex.dev/file-storage/overview
    - UPLOAD - https://docs.convex.dev/file-storage/upload-files
    - SERVE - https://docs.convex.dev/file-storage/serve-files
+
+9. Caching configurations - https://nextjs.org/docs/app/guides/caching-without-cache-components#route-segment-config
+   - 'auto' | 'force-dynamic' | 'error' | 'force-static'
+   - REVALIDATION OF CACHED DATA - TIME BASED AND ON-DEMAND
+
+### dont use authcomponent.safeuser something in getposts because that will change static rendering of blog to dynamic
