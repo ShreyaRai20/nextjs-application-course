@@ -44,7 +44,6 @@ const buttons = [
 
 export function Navbar() {
     const { isAuthenticated, isLoading } = useConvexAuth()
-    const { data: session, isPending } = authClient.useSession()
     const router = useRouter()
     return (
         <nav className="width-full flex justify-between mx-2 my-4">
