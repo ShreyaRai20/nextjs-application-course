@@ -63,4 +63,18 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
    - 'auto' | 'force-dynamic' | 'error' | 'force-static'
    - REVALIDATION OF CACHED DATA - TIME BASED AND ON-DEMAND
 
+10. PROXY - https://nextjs.org/docs/app/api-reference/file-conventions/proxy
+
+- CHECK USER ATHORIZATION IN PROXY.TS FILE AND THEN IN PROTECTED ROUTES AND IN MUTATIONS ETC FOR SOLID CHECK
+- MULTILAYARED AUTHORIZATION CHECK
+
+11. METADATA
+12. PRESENCE
+
+13. ADVANCE CACHING- https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheComponents
+
+- PPR (PARTIAL PRERENDING) NEXTJS 15 VS CACHE COMPONENTS NEXTJS 16
+
+14. GLOBAL SEARCH
+
 ### dont use authcomponent.safeuser something in getposts because that will change static rendering of blog to dynamic

@@ -5,12 +5,13 @@ import { api } from "@/convex/_generated/api";
 import { fetchAuthQuery } from "@/lib/auth-server";
 import { Suspense } from "react";
 import { fetchQuery } from "convex/nextjs";
+import { connection } from "next/server";
 
-export const dynamic = "force-static"
-// 'auto' | 'force-dynamic' | 'error' | 'force-static'
+// export const dynamic = "force-static"
+// // 'auto' | 'force-dynamic' | 'error' | 'force-static'
 
-export const revalidate = 60
-// false | 0 | number
+// export const revalidate = 60
+// // false | 0 | number
 
 export default function Blog() {
     return (
@@ -32,6 +33,7 @@ export default function Blog() {
 }
 
 export async function BlogList() {
+    await connection()
     const posts = await fetchQuery(api.posts.getBlogs);
     // const posts = await fetchAuthQuery(api.posts.getBlogs);
 
