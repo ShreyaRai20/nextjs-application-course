@@ -9,6 +9,7 @@ export const getCommentsByPostId = query({
         .query("comments")
         .filter((q) => q.eq( q.field("postId"),postId))
         .order("desc")
+        .collect()
     }
 })
 

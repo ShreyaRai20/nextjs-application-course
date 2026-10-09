@@ -2,10 +2,10 @@ import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Newsreader } from "next/font/google"
-import { fetchQuery } from "convex/nextjs"
+import { fetchQuery, preloadQuery } from "convex/nextjs"
 import { api } from "@/convex/_generated/api"
 import { Id } from "@/convex/_generated/dataModel"
-import { useMutation } from "convex/react"
+import CommentSection from "@/components/web/comment-section"
 
 const serif = Newsreader({
     subsets: ["latin"],
@@ -34,7 +34,13 @@ export default async function BlogId({
 }) {
     const { blogId } = await params
 
-    const post = await fetchQuery(api.posts.getBlogById, { postId: blogId })
+    // Run both requests in parallel. Don't `await` inside the array,
+    // or they run one after the other.
+    // preloadQuery keeps the comments reactive on the client.
+    const [post, preloadedComments] = await Promise.all([
+        fetchQuery(api.posts.getBlogById, { postId: blogId }),
+        preloadQuery(api.comments.getCommentsByPostId, { postId: blogId }),
+    ])
 
     if (!post) notFound()
 
@@ -113,7 +119,9 @@ export default async function BlogId({
                     )}
                 </div>
 
-                <footer className="mt-16 border-t border-[#E3E6EB] pt-6 text-sm dark:border-[#242A34]">
+                <CommentSection preloadedComments={preloadedComments} />
+
+                <footer className="mt-16 text-sm">
                     <Link
                         href="/blog"
                         className="rounded font-medium text-[#14181F] underline decoration-[#2F4BFF] decoration-2 underline-offset-4 hover:text-[#2F4BFF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2F4BFF] dark:text-[#E8EBF0] dark:decoration-[#8EA0FF] dark:hover:text-[#8EA0FF]"
